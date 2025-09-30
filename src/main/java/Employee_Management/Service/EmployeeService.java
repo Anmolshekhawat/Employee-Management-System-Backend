@@ -21,4 +21,13 @@ public class EmployeeService {
         return  employeeRepository.save(employee);
     }
 
+    public ResponseEntity<Map<String , Boolean>> deleteEmployeeById(long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee Not found"));
+
+        employeeRepository.delete(employee);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("delete",Boolean.TRUE);
+        return  ResponseEntity.ok(response);
+    }
 }

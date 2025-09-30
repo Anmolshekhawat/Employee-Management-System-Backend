@@ -28,6 +28,11 @@ public class EmployeeController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String ,Boolean>> deleteEmployee(@PathVariable long id)
+    {
+        return employeeService.deleteEmployeeById(id);
+    }
 }
 
 
