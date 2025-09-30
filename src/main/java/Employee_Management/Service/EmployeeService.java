@@ -21,4 +21,20 @@ public class EmployeeService {
         return  employeeRepository.save(employee);
     }
 
+
+    public ResponseEntity<Employee> updateEmployee(Long id, Employee employee) {
+
+        Employee oldEmployee  =  employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
+
+
+        oldEmployee.setFirstName(employee.getFirstName());
+        oldEmployee.setLastName(employee.getLastName());
+        oldEmployee.setEmailId(employee.getEmailId());
+        oldEmployee.setWorkRole(employee.getWorkRole());
+
+        Employee updatedEmployee = employeeRepository.save(oldEmployee);
+        return  ResponseEntity.ok(updatedEmployee);
+
+    }
 }

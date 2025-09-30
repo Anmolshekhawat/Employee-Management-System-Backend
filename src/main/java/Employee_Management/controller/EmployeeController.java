@@ -27,6 +27,12 @@ public class EmployeeController {
         return employeeService.save(employee);
     }
 
+    // Update employee
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+        return employeeService.updateEmployee(id, employee);
+    }
+
 
 }
 
